@@ -7,7 +7,9 @@ customVarNames = {
   "HaxonProtoSoon",
   "ThisIsShit",
   "LolYouWillCrackFast",
-  "ThisShitIsBroken"
+  "ThisShitIsBroken",
+  "ThankUCorewave",
+  "LindseyGudLua"
 }  
 
 funcrename = {
