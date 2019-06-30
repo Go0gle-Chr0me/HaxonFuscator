@@ -1,5 +1,5 @@
 Script = [[
-print'HaxonFuscator made by Google Chrome'
+print'HaxonFuscator by Google Chrome'
 ]]
 
 customVarNames = {
@@ -7,8 +7,7 @@ customVarNames = {
   "HaxonProtoSoon",
   "ThisIsShit",
   "LolYouWillCrackFast",
-  "ThisShitIsBroken",
-  "ThankYouLindsey"
+  "ThisShitIsBroken"
 }  
 
 funcrename = {
@@ -41,7 +40,8 @@ funcrename = {
   ["tostring"]="tostring",
   ["unpack"]="unpack",
   ["debug"]="debug",
-  ["bit"]="bit"
+  ["bit"]="bit",
+  ["string.char"]="string.char"
 }
 --CreateVarName
 local chars ="1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1I1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1I1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1I1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1IlI1"
@@ -50,7 +50,7 @@ taken[""] = true
 local function CreateVar()
   local s = ""
   while taken[s] do
-    for i = 1, math.random(5, 15) do
+    for i = 1, math.random(5, 10) do
       local c = chars:sub(i,i)
       s = s..c
     end
@@ -67,16 +67,30 @@ function WipeComment(scr)
 end
 
 --WipeStrings
-local function dumpString(x)
-  return(x:gsub(".", function(bb) return "\\" .. bb:byte() end) or thing .. "\"")
+local mamadouseydou = CreateVar()
+local mamadouseydou0 = CreateVar()
+local mamadouseydou1 = CreateVar()
+local GenStr = function(Str)
+    local R = {}
+    local Ran = function(n)
+        local r = math.random(1, 255)
+        return ((n - r)/6).. ' + ' ..(r/6)
+    end
+
+    for c in Str:gmatch('.') do 
+        table.insert(R, Ran(c:byte()))
+    end
+
+    return "{"..table.concat(R, ', ').."}"
 end
+
 function WipeStrings(scrpt)
   for each in scrpt:gmatch("%b''") do
     scrpt = scrpt:gsub(each, each:gsub("'", '"'))        
   end
   for each in scrpt:gmatch('%b""') do
     each = each:gsub('"', '')  
-    scrpt = scrpt:gsub('"'..each..'"', "'"..dumpString(each).."'")       
+    scrpt = scrpt:gsub('"'..each..'"', "("..mamadouseydou.."("..GenStr(each).."))")       
   end
 
   return scrpt
@@ -93,7 +107,7 @@ function CFR(scrpt)
     setlist = setlist..("local "..v.."="..i.."; ")
     scrpt = scrpt:gsub(i, v)
   end
-  return setlist..scrpt
+  return(setlist..scrpt)
 end
 
 --LocalFuncRename
@@ -138,6 +152,7 @@ function RW(scrpt)
   scrpt = scrpt:gsub("^%s*(.-)%s*$", "%1")
   scrpt = scrpt:gsub("(^%s*).*", "")
   scrpt = scrpt:gsub(" %s+", " ")
+  scrpt = scrpt:gsub(";%c+","; ")
   return scrpt
 end
 
@@ -165,11 +180,12 @@ end
 function Obfuscate(scr)
   scr = WipeComment(scr)
   scr = WipeStrings(scr)
+  scr = 'function '..mamadouseydou..'('..mamadouseydou0..') local '..mamadouseydou1..' = ""; for  i,v in pairs('..mamadouseydou0..') do '..mamadouseydou1..' = '..mamadouseydou1..'..string.char(v*6); end return('..mamadouseydou1..') end;'..scr
   scr = LFR(scr)
   scr = NLFR(scr)
   scr = VR(scr)
-  scr = CFR(scr)
   scr = RW(scr)
+  scr = CFR(scr)
 
   print(scr)
 end
