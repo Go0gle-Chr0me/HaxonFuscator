@@ -3,12 +3,9 @@ print'HaxonFuscator by Google Chrome'
 ]]
 
 customVarNames = {
-  "HaxonNotAxon",
-  "HaxonProtoSoon",
   "ThisIsShit",
   "LolYouWillCrackFast",
   "ThisShitIsBroken",
-  "ThankUCorewave",
   "LindseyGudLua"
 }  
 
