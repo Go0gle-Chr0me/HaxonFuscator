@@ -169,7 +169,7 @@ function Obfuscate(scr)
   scr = LFR(scr)
   scr = NLFR(scr)
   scr = VR(scr)
-  scr = RW(scr)
+  --scr = RW(scr)
   scr = CFR(scr)
 
   print(scr)
