@@ -165,7 +165,7 @@ end
 function Obfuscate(scr)
   scr = WipeComment(scr)
   scr = WipeStrings(scr)
-  scr = 'function '..mamadouseydou..'('..mamadouseydou0..') local '..mamadouseydou1..' = ""; for  i,v in pairs('..mamadouseydou0..') do '..mamadouseydou1..' = '..mamadouseydou1..'..string.char(v*6); end return('..mamadouseydou1..') end;'..scr
+  scr = 'function '..mamadouseydou..'('..mamadouseydou0..') local '..mamadouseydou1..' = ""; for  i,v in pairs('..mamadouseydou0..') do '..mamadouseydou1..' = '..mamadouseydou1..'..string.char(v*2); end return('..mamadouseydou1..') end;'..scr
   scr = LFR(scr)
   scr = NLFR(scr)
   scr = VR(scr)
