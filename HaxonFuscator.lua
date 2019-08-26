@@ -59,7 +59,7 @@ local GenStr = function(Str)
     local R = {}
     local Ran = function(n)
         local r = math.random(1, 255)
-        return ((n - r)/6).. ' + ' ..(r/6)
+        return ((n - r)/4).. ' + ' ..(r/4)
     end
 
     for c in Str:gmatch('.') do 
